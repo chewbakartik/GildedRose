@@ -9,7 +9,7 @@ namespace GildedRose.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            throw new NotImplementedException();
+            return Ok();
         }
     }
 }
