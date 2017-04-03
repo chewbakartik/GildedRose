@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GildedRose.Data;
+using GildedRose.Data.Abstract;
+using GildedRose.Data.Repositories;
+using GildedRose.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +35,11 @@ namespace GildedRose
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase());
+
+            // Repositories
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<EntityBaseRepository<Item>, ItemRepository>();
+
             services.AddMvc();
         }
 
