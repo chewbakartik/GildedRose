@@ -1,4 +1,4 @@
-﻿using GildedRose.Models;
+﻿using GildedRose.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -9,6 +9,9 @@ namespace GildedRose.Data
         public ApiContext(DbContextOptions<ApiContext> options) : base(options) {}
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionDetail> TransactionDetails { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
