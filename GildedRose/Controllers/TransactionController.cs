@@ -11,24 +11,48 @@ using System.Security.Claims;
 
 namespace GildedRose.Controllers
 {
+    [Route("api/transactions")]
     public class TransactionController : Controller
     {
         private readonly ITransactionService _transactionService;
+        private readonly ITransactionRepository _transactionRepository;
         private readonly IUserRepository _userRepository;
 
-        public TransactionController(ITransactionService transactionService, IUserRepository userRepository)
+        public TransactionController(ITransactionRepository transactionRepository, ITransactionService transactionService, IUserRepository userRepository)
         {
+            _transactionRepository = transactionRepository;
             _transactionService = transactionService;
             _userRepository = userRepository;
         }
 
         [Authorize(Roles = "user")]
-        [HttpPost]
+        [HttpGet("{id}", Name = "GetTransaction")]
+        public IActionResult Get(int id)
+        {
+            // Get calling user
+            var authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var user = _userRepository.GetByAuthId(authId);
+            
+            // Get transaction
+            var transaction = _transactionRepository.GetProperties(id);
+            if (transaction == null)
+            {
+                return new NotFoundResult();
+            }
+            if (User.Claims.Where(c => c.Type == ClaimTypes.Role).All(c => c.Value == "admin") || (user != null && transaction.UserId != user.Id))
+            {
+                return new ForbidResult();
+            }
+            return new OkObjectResult(transaction);
+        }
+
+        [Authorize(Roles = "user")]
+        [HttpPost("order")]
         public IActionResult Order([FromBody] List<PurchaseOrderItemDTO> items)
         {
             if (items == null)
             {
-                return BadRequest();
+                return new BadRequestResult();
             }
             List<string> validationMessages;
             var valid = _transactionService.Validate(items, out validationMessages);
@@ -51,7 +75,7 @@ namespace GildedRose.Controllers
                 _userRepository.Add(user);
             }
             var transaction = _transactionService.Create(items, user.Id);
-            return CreatedAtRoute("TransactionOrder", transaction.Id, transaction);
+            return CreatedAtRoute("GetTransaction", new {transaction.Id}, transaction);
         }
     }
 }

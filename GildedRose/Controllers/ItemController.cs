@@ -7,11 +7,11 @@ using System.Linq;
 namespace GildedRose.Controllers
 {
     [Route("api/items")]
-    public class ItemsController : Controller
+    public class ItemController : Controller
     {
         private readonly IItemRepository _itemRepository;
 
-        public ItemsController(IItemRepository itemRepository)
+        public ItemController(IItemRepository itemRepository)
         {
             _itemRepository = itemRepository;
         }
@@ -30,7 +30,7 @@ namespace GildedRose.Controllers
             {
                 return new OkObjectResult(item);
             }
-            return NotFound();
+            return new NotFoundResult();
         }
 
         [Authorize(Roles = "admin")]
@@ -39,7 +39,7 @@ namespace GildedRose.Controllers
         {
             if (item == null)
             {
-                return BadRequest("");
+                return new BadRequestResult();
             }
             var itemExist = _itemRepository.GetByName(item.Name);
             if (itemExist != null)

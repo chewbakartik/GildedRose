@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose\GildedRose.csproj", "{64E38F75-FCA0-4C51-AC8A-1A62C91105A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EABC4F27-843A-4481-BBAA-2A636240CB35}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Tests.Unit", "Tests\GildedRose.Tests.Unit\GildedRose.Tests.Unit.csproj", "{1D686BCF-3673-46DD-A261-C01FDE42A716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Tests.Integration", "Tests\GildedRose.Tests.Integration\GildedRose.Tests.Integration.csproj", "{BCF2418C-C23F-4286-BB10-1B1153943860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,11 +25,16 @@ Global
 		{1D686BCF-3673-46DD-A261-C01FDE42A716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D686BCF-3673-46DD-A261-C01FDE42A716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D686BCF-3673-46DD-A261-C01FDE42A716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF2418C-C23F-4286-BB10-1B1153943860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF2418C-C23F-4286-BB10-1B1153943860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF2418C-C23F-4286-BB10-1B1153943860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF2418C-C23F-4286-BB10-1B1153943860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1D686BCF-3673-46DD-A261-C01FDE42A716} = {EABC4F27-843A-4481-BBAA-2A636240CB35}
+		{BCF2418C-C23F-4286-BB10-1B1153943860} = {EABC4F27-843A-4481-BBAA-2A636240CB35}
 	EndGlobalSection
 EndGlobal

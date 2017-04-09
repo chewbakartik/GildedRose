@@ -39,6 +39,11 @@ namespace GildedRose.Data.Services
                 _transactionDetailRepository.Add(detail);
                 _transactionDetailRepository.Commit();
                 details.Add(detail);
+
+                //Update Item Quantity
+                item.Quantity = item.Quantity - itemDTO.Quantity;
+                _itemRepository.Edit(item);
+                _itemRepository.Commit();
             }
             var transaction = new Transaction
             {

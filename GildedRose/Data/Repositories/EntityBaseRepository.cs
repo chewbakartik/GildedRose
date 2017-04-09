@@ -12,7 +12,7 @@ namespace GildedRose.Data.Repositories
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
         where T : IEntityBase, new()
     {
-        private readonly ApiContext _context;
+        protected readonly ApiContext _context;
 
         public EntityBaseRepository(ApiContext context)
         {

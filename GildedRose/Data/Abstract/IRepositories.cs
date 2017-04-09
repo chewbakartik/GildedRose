@@ -1,4 +1,5 @@
-﻿using GildedRose.Entities;
+﻿using System.Collections.Generic;
+using GildedRose.Entities;
 
 namespace GildedRose.Data.Abstract
 {
@@ -9,7 +10,11 @@ namespace GildedRose.Data.Abstract
 
     public interface ITransactionDetailRepository : IEntityBaseRepository<TransactionDetail> {}
 
-    public interface ITransactionRepository : IEntityBaseRepository<Transaction> {}
+    public interface ITransactionRepository : IEntityBaseRepository<Transaction>
+    {
+        IEnumerable<Transaction> AllProperties();
+        Transaction GetProperties(int id);
+    }
 
     public interface IUserRepository : IEntityBaseRepository<User>
     {

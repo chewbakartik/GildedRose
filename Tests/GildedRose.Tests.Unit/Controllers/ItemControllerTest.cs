@@ -9,14 +9,14 @@ using Xunit;
 
 namespace GildedRose.Tests.Unit.Controllers
 {
-    public class ItemsControllerTest
+    public class ItemControllerTest
     {
         [Fact]
         public void Index_ReturnsOkObjectResult()
         {
             var itemRepository = new Mock<IItemRepository>();
             itemRepository.Setup(p => p.GetAll()).Returns(new List<Item>());
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
 
             var result = controller.Index();
 
@@ -33,7 +33,7 @@ namespace GildedRose.Tests.Unit.Controllers
         {
             var itemRepository = new Mock<IItemRepository>();
             itemRepository.Setup(p => p.Get(1)).Returns<Item>(null);
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
             var result = controller.Get(1);
 
             Assert.IsType<NotFoundResult>(result);
@@ -50,7 +50,7 @@ namespace GildedRose.Tests.Unit.Controllers
                 Price = 9.99,
                 Quantity = 10
             });
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
             var result = controller.Get(1);
 
             Assert.IsType<OkObjectResult>(result);
@@ -68,10 +68,10 @@ namespace GildedRose.Tests.Unit.Controllers
         public void Add_ReturnsBadRequestWhenItemIsNull()
         {
             var itemRepository = new Mock<IItemRepository>();
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
             Item item = null;
             var result = controller.Add(item);
-            Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace GildedRose.Tests.Unit.Controllers
                 Price = 9.99,
                 Quantity = 10
             });
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
             Item item = new Item {
                 Name = "Item1",
                 Description = "Description1",
@@ -102,7 +102,7 @@ namespace GildedRose.Tests.Unit.Controllers
         {
             var itemRepository = new Mock<IItemRepository>();
             itemRepository.Setup(p => p.GetByName("Item1")).Returns<Item>(null);
-            var controller = new ItemsController(itemRepository.Object);
+            var controller = new ItemController(itemRepository.Object);
             Item item = new Item
             {
                 Name = "Item1",
