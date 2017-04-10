@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using GildedRose.Data;
-using GildedRose.Data.Abstract;
 using GildedRose.Data.Repositories;
 using GildedRose.Data.Services;
 using GildedRose.Entities;
 using GildedRose.Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using Xunit;
 
 namespace GildedRose.Tests.Integration.Services

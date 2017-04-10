@@ -4,12 +4,9 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using GildedRose.Data;
-using GildedRose.Data.Repositories;
 using GildedRose.Entities;
 using GildedRose.Entities.DTOs;
 using GildedRose.Tests.Integration.Helpers;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Xunit;
 

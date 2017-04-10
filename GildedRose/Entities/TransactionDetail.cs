@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace GildedRose.Entities
+﻿namespace GildedRose.Entities
 {
     public class TransactionDetail : IEntityBase
     {
@@ -11,8 +9,5 @@ namespace GildedRose.Entities
         public double SubTotal { get; set; }
 
         public virtual Item Item { get; set; }
-
-        [JsonIgnore]
-        public virtual Transaction Transaction { get; set; }
     }
 }

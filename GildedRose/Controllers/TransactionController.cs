@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GildedRose.Data.Abstract;
-using GildedRose.Data.Services;
 using GildedRose.Entities;
 using GildedRose.Entities.DTOs;
 using Microsoft.AspNetCore.Authorization;
